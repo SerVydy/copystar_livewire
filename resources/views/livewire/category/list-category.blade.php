@@ -12,13 +12,17 @@
                     @endforeach
 
                 </select>
-                <input type="text" placeholder="Search..." class="border border-gray-300 p-2">
+                <input wire:model.live.debounce.300ms='search' type="text" placeholder="Search..." class="border border-gray-300 p-2">
             </div>
             <table class="w-full mt-4">
                 <thead>
                     <tr class="grid grid-cols-[1fr_10fr_1fr] text-left bg-gray-200 px-2 py-3">
-                        <th>ID</th>
-                        <th>Name</th>
+                        <th wire:click = 'changeSort("ID")' class="cursor-pointer">
+                            <x-sort_category field='ID' :sort="$sort" :direction='$direction' />
+                        </th>
+                        <th wire:click = 'changeSort("Name")' class="cursor-pointer">
+                            <x-sort_category field='Name' :sort="$sort" :direction='$direction' />
+                        </th>
                         <th>Delete</th>
                     </tr>
                 </thead>
